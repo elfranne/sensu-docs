@@ -140,7 +140,7 @@ metadata:
 spec:
   action: allow
   expressions:
-  - event.entity.labels.region.match(/us-west-\b[1-3]\b/)
+  - event.entity.metadata.labels.region.match(/us-west-\b[1-3]\b/)
 {{< /code >}}
 
 {{< code json >}}
@@ -153,7 +153,7 @@ spec:
    "spec": {
       "action": "allow",
       "expressions": [
-         "event.entity.labels.region.match(/us-west-\b[1-3]\b/)"
+         "event.entity.metadata.labels.region.match(/us-west-\b[1-3]\b/)"
       ]
    }
 }
@@ -478,7 +478,7 @@ For more information about event attributes, read the [event reference][28].
 `event.entity.deregister`              | Boolean | Whether the agent entity should be removed when it stops sending [keepalive messages][26]
 `event.entity.deregistration`          | map     | A map that contains a handler name for use when an entity is deregistered
 `event.entity.entity_class`            | string  | The entity type: usually `agent` or `proxy`
-`event.entity.labels`                  | map     | Custom [labels][24] assigned to the entity
+`event.entity.metadata.labels`                  | map     | Custom [labels][24] assigned to the entity
 `event.entity.last_seen`               | integer | Timestamp the entity was last seen in seconds since the Unix epoch
 `event.entity.name`                    | string  | Entity name
 `event.entity.redact`                  | array   | List of items to redact from log messages
@@ -876,7 +876,7 @@ metadata:
 spec:
   action: allow
   expressions:
-  - event.entity.labels['environment'] == 'production'
+  - event.entity.metadata.labels['environment'] == 'production'
 {{< /code >}}
 
 {{< code json >}}
@@ -889,7 +889,7 @@ spec:
   "spec": {
     "action": "allow",
     "expressions": [
-      "event.entity.labels['environment'] == 'production'"
+      "event.entity.metadata.labels['environment'] == 'production'"
     ]
   }
 }
@@ -917,7 +917,7 @@ metadata:
 spec:
   action: deny
   expressions:
-  - event.entity.labels['environment'] == 'production'
+  - event.entity.metadata.labels['environment'] == 'production'
 {{< /code >}}
 
 {{< code json >}}
@@ -930,7 +930,7 @@ spec:
   "spec": {
     "action": "deny",
     "expressions": [
-      "event.entity.labels['environment'] == 'production'"
+      "event.entity.metadata.labels['environment'] == 'production'"
     ]
   }
 }
